@@ -1,4 +1,4 @@
-# video-searcher
+# video-spa
 
 ## Project setup
 ```
