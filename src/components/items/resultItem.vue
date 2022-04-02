@@ -1,0 +1,125 @@
+<template>
+    <div class="result-item" :class="{small: small}">
+        <div class="result-preview" >
+            <q-img :src="result.preview"/>
+        </div>
+        <div class="result-text" >
+            <div class="text-subtitle result-title overflow-elips">
+                {{result.title}}
+            </div>
+            <div class="text-subtitle result-published-day" :class="{'overflow-elips': small}">
+                Дата публикации: {{definePublishedDay(result.publishedAt)}}
+            </div>
+            <div class="text-subtitle result-chanel-title" :class="{'overflow-elips': small}">
+               <chanel-avatar v-if="!small" size="sm" :title="result.chanelname"/> {{result.chanelname}}
+            </div>
+            <div class="text-subtitle result-description overflow-elips">
+                {{result.description}}
+            </div>
+            <!-- <div class="text-subtitle result-description">
+                Просмотры {{numberWithSpaces(result.statistics.viewCount)}}
+            </div> -->
+        </div>
+    </div>
+</template>
+
+<script>
+
+import {definePublishedDay} from '@/helpers/myHelpers.js'
+import chanelAvatar from './chanelAvatarItem.vue'
+
+export default {
+    components: {chanelAvatar},
+    data(){
+        return {
+            definePublishedDay
+        }
+    },
+    props: {
+        result: {
+            type: Object,
+            default: {}
+        },
+        small: {
+            type: Boolean,
+            default: false
+        }
+    },
+}
+</script>
+
+<style lang="scss" scoped>
+    .result-item {
+        width: 100%;
+        display: flex;
+        cursor: pointer;
+        position: relative;
+        align-items: center;
+        background-color: #FFF;
+        .result-preview {
+            width: 22%;
+            margin-right: 25px;
+            max-width: 260px;
+            min-width: 180px;
+            overflow: hidden;
+        }
+        .result-text {
+            width: 77%;
+            .result-title {
+                font-weight: 600;
+                font-size: 18px;
+                max-width: 80%;
+            }
+            .result-published-day {
+                margin-bottom: 10px;
+                opacity: 0.8;
+            }
+            .result-chanel-title {
+                opacity: 0.7;
+                font-size: 14px;
+            }
+            .result-description {
+                opacity: 0.5;
+                max-width: 80%;
+                margin-top: 10px;
+            }
+        }
+        // .result-btn {
+        //     position: absolute;
+        //     right: 25px;
+        //     font-size: 20px;
+        //     color: #777777;
+        //     button:before {
+        //         box-shadow: none;
+        //     } 
+        // }
+    }
+    .result-item {
+        &.small {
+            .result-preview {
+                margin-right: 15px;
+            }
+            .result-text {
+                .result-title {
+                    font-size: 14px;
+                    max-width: 65%;
+                }
+                .result-published-day {
+                    margin-bottom: 5px;
+                    font-size: 12px;
+                }
+                .result-chanel-title {
+                    font-size: 12px;
+                }
+                .result-description {
+                    display: none;
+                }
+            }
+        }
+    }
+    .overflow-elips {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
