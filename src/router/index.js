@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from '@/views/Home.vue'
 import SearchResults  from '@/views/SearchResults.vue'
-import FavoritesList from '@/views/FavoritesList.vue'
 import Video from '@/views/Video.vue'
 import WatchLaterPlaylist from '@/views/WatchLaterPlaylist.vue'
 import History from '../views/History.vue'
@@ -30,15 +29,6 @@ const routes = [
     path: '/search/:querry',
     name: 'SearchResults',
     component: SearchResults,
-    meta: {
-      isSearchDone: true,
-    }
-  },
-
-  {
-    path: '/favorites',
-    name: 'FavoritesList',
-    component: FavoritesList,
   },
 
   {
