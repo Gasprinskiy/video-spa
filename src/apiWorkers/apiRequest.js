@@ -11,7 +11,7 @@ import {
     isCacheIncludes,
     videoListToUnifiedView,
     videoToUnifiedView
- } from '../helpers/myHelpers.js'
+ } from '@/helpers/myHelpers.js'
 
 export const apiRequest = async (callBack, options) => {
     const isInCache = isCacheIncludes(options.request)
@@ -49,7 +49,6 @@ export const getRecomendationVideo = async (options) => {
         maxResult: options.maxResult
     }
     const result = await callBackCaller(similarVideo, requestOptions)
-    console.log(result);
     return videoListToUnifiedView(result)
 }
 
@@ -85,7 +84,10 @@ export const getVideoFullData = async (options) => {
                     result.similarVideo = response
                 }
             })
-    return videoToUnifiedView(result)
+    if(!isResponseError(result)){
+        result = videoToUnifiedView(result)
+    }             
+    return result
 }
 
 
