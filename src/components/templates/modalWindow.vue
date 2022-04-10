@@ -6,8 +6,6 @@
             <slot name="body"/>
         </div>
     </div>   
-        
-    
 </template>
 
 <script>
