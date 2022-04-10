@@ -25,9 +25,9 @@ export const youTubesearch = async(options) => {
 export const fullVideoData = async (options) => {
     return axios.get(apiUrl + '/videos', {
         params: {
-            part: apiKeys.key2,
+            part: options.part,
             id: options.videoId,
-            key: newApiKey,
+            key: apiKeys.key2,
         }
     })
 }
