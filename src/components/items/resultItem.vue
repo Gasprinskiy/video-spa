@@ -3,12 +3,12 @@
         <div class="result-preview" >
             <q-img :src="result.preview"/>
         </div>
-        <div class="result-text" >
+        <div class="result-text">
             <div class="text-subtitle result-title overflow-elips">
                 {{result.title}}
             </div>
             <div class="text-subtitle result-published-day" :class="{'overflow-elips': small}">
-                Дата публикации: {{definePublishedDay(result.publishedAt)}}
+               <span v-if="!small">Дата публикации:</span> {{definePublishedDay(result.publishedAt)}}
             </div>
             <div class="text-subtitle result-chanel-title" :class="{'overflow-elips': small}">
                <chanel-avatar v-if="!small" size="sm" :title="result.chanelname"/> {{result.chanelname}}
@@ -16,9 +16,9 @@
             <div class="text-subtitle result-description overflow-elips">
                 {{result.description}}
             </div>
-            <!-- <div class="text-subtitle result-description">
-                Просмотры {{numberWithSpaces(result.statistics.viewCount)}}
-            </div> -->
+        </div>
+        <div class="result-item-absolute-slot">
+            <slot name="absolute-slot"></slot>
         </div>
     </div>
 </template>
@@ -56,11 +56,15 @@ export default {
         position: relative;
         align-items: center;
         background-color: #FFF;
+        border-radius: 5px;
+        overflow: hidden;
         .result-preview {
             width: 22%;
             margin-right: 25px;
             max-width: 260px;
             min-width: 180px;
+            overflow: hidden;
+            border-radius: 5px;
             overflow: hidden;
         }
         .result-text {
@@ -84,15 +88,10 @@ export default {
                 margin-top: 10px;
             }
         }
-        // .result-btn {
-        //     position: absolute;
-        //     right: 25px;
-        //     font-size: 20px;
-        //     color: #777777;
-        //     button:before {
-        //         box-shadow: none;
-        //     } 
-        // }
+        .result-item-absolute-slot {
+            position: absolute;
+            right: 0;
+        }
     }
     .result-item {
         &.small {
