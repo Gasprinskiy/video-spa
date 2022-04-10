@@ -24,7 +24,7 @@ export const videoListToUnifiedView = (data) => {
             }
             if(elem.snippet){
                 unifiedView.push({
-                    id: id,
+                    videoId: id,
                     chanelname: elem.snippet.channelTitle,
                     title: elem.snippet.title,
                     description: elem.snippet.description,
@@ -43,7 +43,7 @@ export const videoListToUnifiedView = (data) => {
 
 export const videoToUnifiedView = (data) => {
     return {
-        id: data.about.id,
+        videoId: data.about.id,
         url: `https://www.youtube.com/embed/${data.about.id}?autoplay=1`,
         title: data.about.snippet.title,
         description: data.about.snippet.description,
@@ -64,13 +64,21 @@ export const definePublishedDay = (date) => {
     return publishedDay
 }
 
+export const isArrayEmpty = (array) => {
+    if(array.length <= 0){
+        return true
+    } else {
+        return false
+    }
+}
+
 export const defineMonth = (month) => {
     switch(month){
         case 1: return 'январь'
         case 2: return 'февраль'
         case 3: return 'март'
         case 4: return 'апрель'
-        case 5: return 'мая'
+        case 5: return 'май'
         case 6: return 'июнь'
         case 7: return 'июль'
         case 8: return 'август'
@@ -84,4 +92,6 @@ export const defineMonth = (month) => {
 export const formatNumber = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
+
+
 
