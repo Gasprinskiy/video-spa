@@ -45,22 +45,51 @@ export default {
   },
 
   methods: {
+    requestBuilder() {
+      return {
+        httpQuery: {
+          initiator: getMostPopularVideo,
+          options: {
+            request: 'mostPopular',
+            maxResult: 5
+          }
+        },
+      }
+    },
+
+    requestSuccess(response) {
+      if (response.message) {
+        this.isError = true
+        this.errorMessege = `Ошибка: ${response.message}`
+        this.message = this.errorMessege
+        this.noDataCounter += 1;
+      } else {
+        this.popularVideoList = response
+      }
+    },
+
+    requestFailed(error) {
+      this.$q.notify({
+        message: 'hello'
+      })
+    },
 
     getPopularVideoList(){
-      apiRequest(getMostPopularVideo, {
-        request: 'mostPopular', 
-        maxResult: 5
-      })
-        .then(response => {
-                if(response.message){
-                  this.isError = true
-                  this.errorMessege = `Ошибка: ${response.message}`
-                  this.message = this.errorMessege
-                  this.noDataCounter += 1;
-                } else {
-                  this.popularVideoList = response
-                }
-        })
+      this.makeRequest()
+      // apiRequest(getMostPopularVideo, {
+      //   request: 'mostPopular',
+      //   maxResult: 5
+      // })
+      //   .then(response => {
+      //           if(response.message){
+      //             this.isError = true
+      //             this.errorMessege = `Ошибка: ${response.message}`
+      //             this.message = this.errorMessege
+      //             this.noDataCounter += 1;
+      //           } else {
+      //             this.popularVideoList = response
+      //           }
+      //   })
     },
 
     async getRecentWatchedVideosId(){
