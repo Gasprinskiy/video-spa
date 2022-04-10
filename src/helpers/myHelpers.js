@@ -3,11 +3,9 @@ import { cache } from "@/cache/cacher.js";
 export const cacheData = (key, value) => {
     cache.save(key, value)
 }
-
 export const returnFromCache = (key) => {
     return cache.get(key)
 }
-
 export const isCacheIncludes = (key) => {
     return cache.includes(key)
 }
