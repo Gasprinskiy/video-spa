@@ -2,10 +2,10 @@ import Dexie from 'dexie';
 
 export const db = new Dexie('myDatabase');
 
-db.version(3).stores({
-    favorites: '++id, request, title, maxResult, sortOptValue, sortOptTitle',
-    browsingHistory: 'id, title, description, chanelname, publishedAt, preview',
-    watchLaterPlaylist: 'id, title, description, chanelname, publishedAt, preview',
+db.version(4).stores({
+    browsingHistory: '++id, videoId, title, description, chanelname, publishedAt, preview',
+    searchHistory: '++id, request',
+    watchLaterPlaylist: '++id, videoId, title, description, chanelname, publishedAt, preview',
 });
 
 // title: data.about.snippet.title,
