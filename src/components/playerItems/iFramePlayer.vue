@@ -8,8 +8,6 @@
 
 <script>
 
-//https://www.youtube.com/embed/${videoId}?autoplay=1
-
 export default {
     props: {
         url: {
