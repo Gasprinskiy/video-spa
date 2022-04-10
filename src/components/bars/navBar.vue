@@ -18,11 +18,6 @@
                         <q-icon name="watch_later"/>
                     </router-link>
                 </div>
-                <div class="nav-bar-link">
-                    <router-link class="nav-bar-router-link" to="/favorites">
-                        <q-icon name="favorite"/>
-                    </router-link>
-                </div>
             </div>
         </div>
     </div>
@@ -32,11 +27,7 @@
 
 
 export default {
-    computed: {
-        isSearch(){
-            return this.$route.meta.search
-        }
-    },
+    
 }
 </script>
 
