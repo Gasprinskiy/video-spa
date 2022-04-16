@@ -52,7 +52,6 @@ export default {
 
     watch: {
         '$route.path'(){
-            //// Обращение к api ////////////////////////
             if(this.$route.params.id){
                 this.$q.loading.show()
                 this.getRoutedVideo()
@@ -66,26 +65,7 @@ export default {
                         }
                     })
             }
-        },
-        ////////////////////////////////////////////
-
-        //// Mock ////
-        // '$route.path'(){
-        //     if(this.$route.params.id) {
-        //         this.$q.loading.show()
-        //         this.allRequestsDone = false
-        //         this.currentVideo = {}
-        //         const similarVue = JSON.parse(localStorage.getItem('similarVue'))
-        //         this.currentVideo = videoToUnifiedView(similarVue)
-        //         this.saveVideoToBrowseHistory()
-        //             .then(()=>{
-        //                 this.isInWatchLaterPlaylist()
-        //                 this.allRequestsDone = true
-        //                 this.$q.loading.hide()
-        //             })
-        //     }
-        // }
-        ////////////////////////////////////////////    
+        },   
     },
 
     methods: {
@@ -171,19 +151,6 @@ export default {
     },
 
     beforeMount(){
-        //// mock ////////////////////////
-        // this.videoId = this.$route.params.id;
-        // this.$q.loading.show()
-        // this.allRequestsDone = true
-        // const similarVue = JSON.parse(localStorage.getItem('similarVue'))
-        // this.currentVideo = videoToUnifiedView(similarVue)
-        // this.isInWatchLaterPlaylist()
-        // this.saveVideoToBrowseHistory()
-        //     .then(()=>{
-        //         this.$q.loading.hide()
-        //     })
-
-        //// Обращение к api ////////////////////////
         this.$q.loading.show()
         this.getRoutedVideo()
             .then(()=>{
@@ -196,7 +163,6 @@ export default {
                     })
                 }
             })
-        //////////////////////////////////////////////////
     },
 }
 </script>
