@@ -22,9 +22,9 @@
 
 <script>
 
-import { isArrayEmpty } from '@/helpers/myHelpers.js'
-import { apiRequest, getMostPopularVideo, getRecomendationVideo } from '@/apiWorkers/apiRequest.js'
-import { dbRequestCaller, getDataFromDbWithLimit } from '@/dbWorker/dbWorkers.js'
+import { isArrayEmpty } from '@/serviсes/helpers/'
+import { apiRequest, getMostPopularVideo, getRecomendationVideo } from '@/serviсes/apiWorkers/apiRequest.js'
+import { dbRequestCaller, getDataFromDbWithLimit } from '@/serviсes/dbWorker/'
 
 import messageMixin from '@/mixins/messageMixin.js'
 import resultList from '@/components/lists/resultList.vue'
@@ -45,51 +45,22 @@ export default {
   },
 
   methods: {
-    requestBuilder() {
-      return {
-        httpQuery: {
-          initiator: getMostPopularVideo,
-          options: {
-            request: 'mostPopular',
-            maxResult: 5
-          }
-        },
-      }
-    },
-
-    requestSuccess(response) {
-      if (response.message) {
-        this.isError = true
-        this.errorMessege = `Ошибка: ${response.message}`
-        this.message = this.errorMessege
-        this.noDataCounter += 1;
-      } else {
-        this.popularVideoList = response
-      }
-    },
-
-    requestFailed(error) {
-      this.$q.notify({
-        message: 'hello'
-      })
-    },
 
     getPopularVideoList(){
-      this.makeRequest()
-      // apiRequest(getMostPopularVideo, {
-      //   request: 'mostPopular',
-      //   maxResult: 5
-      // })
-      //   .then(response => {
-      //           if(response.message){
-      //             this.isError = true
-      //             this.errorMessege = `Ошибка: ${response.message}`
-      //             this.message = this.errorMessege
-      //             this.noDataCounter += 1;
-      //           } else {
-      //             this.popularVideoList = response
-      //           }
-      //   })
+      apiRequest(getMostPopularVideo, {
+        request: 'mostPopular', 
+        maxResult: 5
+      })
+        .then(response => {
+                if(response.message){
+                  this.isError = true
+                  this.errorMessege = `Ошибка: ${response.message}`
+                  this.message = this.errorMessege
+                  this.noDataCounter += 1;
+                } else {
+                  this.popularVideoList = response
+                }
+        })
     },
 
     async getRecentWatchedVideosId(){

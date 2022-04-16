@@ -13,9 +13,8 @@
 </template>
 
 <script>
-import { apiRequest, searchVideo } from '@/apiWorkers/apiRequest.js'
-import { videoListToUnifiedView } from '@/helpers/myHelpers.js'
-import { isArrayEmpty } from '@/helpers/myHelpers.js'
+import { apiRequest, searchVideo } from '@/serviсes/apiWorkers/apiRequest.js'
+import { isArrayEmpty } from '@/serviсes/helpers/'
 
 import messageMixin from '@/mixins/messageMixin.js'
 import resultList from '@/components/lists/resultList.vue'
@@ -45,6 +44,7 @@ export default {
 
     watch: {
         '$route.path'(){
+            //// Обращение к api /////////////
             if(this.$route.params.querry){
                 this.$q.loading.show()
                 this.searchByRouteQuerry()
@@ -52,7 +52,20 @@ export default {
                         this.$q.loading.hide()
                     })
             }
+            //// Обращение к api /////////////
         },
+
+        '$route.path'(){
+            //// Mock /////////////
+            // if(this.$route.params.querry){
+            //     this.options.request = this.$route.params.querry
+            //     this.$q.loading.show()
+            //     this.resultList = videoListToUnifiedView(JSON.parse(localStorage.getItem('mockData')))
+            //     this.$q.loading.hide()
+            // }
+            //// Mock /////////////
+        }
+        
     },
 
     methods: {
@@ -70,11 +83,20 @@ export default {
     },
 
     beforeMount(){
+        //// Mock /////////////
+        // this.options.request = this.$route.params.querry
+        // this.$q.loading.show()
+        // this.resultList = videoListToUnifiedView(JSON.parse(localStorage.getItem('mockData')))
+        // this.$q.loading.hide()
+        //// Mock /////////////
+
+        //// Обращение к api /////////////
         this.$q.loading.show()
         this.searchByRouteQuerry()
             .then(() => {
                 this.$q.loading.hide()
-            }) 
+            })
+        //// Обращение к api /////////////   
     },
 
 }

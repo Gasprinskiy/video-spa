@@ -57,8 +57,8 @@
 
 <script>
 
-import { isArrayEmpty } from '@/helpers/myHelpers.js'
-import { dbRequestCaller, getDataFromDbWithLimit, getDbTotalCount, removeDataFromDb } from '@/dbWorker/dbWorkers.js'
+import { isArrayEmpty } from '@/serviсes/helpers/'
+import { dbRequestCaller, getDataFromDbWithLimit, getDbTotalCount, removeDataFromDb } from '@/serviсes/dbWorker/'
 
 import messageMixin from '@/mixins/messageMixin.js'
 import intersection from '@/directives/intersection.js'
@@ -82,6 +82,7 @@ export default {
     data(){
         return {
             playListItems: [],
+            errMessage: '',
             showClearConfirm: false,
             listTotalCount: 0,
             loadOptions: {
@@ -94,8 +95,8 @@ export default {
 
     computed: {
         playListEmptyMsg(){
-            if(this.errorMessege !== ''){
-                return this.errorMessege
+            if(this.errMessage !== ''){
+                return this.errMessage
             }
             return 'Плейлист пуст' 
         }

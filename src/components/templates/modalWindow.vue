@@ -6,6 +6,8 @@
             <slot name="body"/>
         </div>
     </div>   
+        
+    
 </template>
 
 <script>
@@ -61,7 +63,7 @@ export default {
             margin: auto;
             position: relative;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 5px;
             .modal-window-close-btn {
                 position: absolute;
                 right: 0;

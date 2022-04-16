@@ -27,7 +27,11 @@
 
 
 export default {
-    
+    computed: {
+        isSearch(){
+            return this.$route.meta.search
+        }
+    },
 }
 </script>
 

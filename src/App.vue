@@ -26,7 +26,7 @@ import {dbRequestCaller,
         removeDataFromDb, 
         getFilteredDataFromDb, 
         searchByValInDb
-} from '@/dbWorker/dbWorkers.js'
+} from '@/serviсes/dbWorker/'
 
 import navBar from '@/components/bars/navBar.vue'
 import searchBar from '@/components/bars/searchBar.vue'
@@ -127,7 +127,11 @@ body {
   background-color: #FAFAFA;
 }
 
-
+// #app {
+//   width: 100%;
+//   max-width: 1440px;
+//   margin: auto;
+// }
 .wrapper {
   max-width: 1440px;
   margin: auto;

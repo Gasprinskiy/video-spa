@@ -25,7 +25,7 @@
 
 <script>
 
-import {definePublishedDay} from '@/helpers/myHelpers.js'
+import {definePublishedDay} from '@/serviсes/helpers/'
 import chanelAvatar from './chanelAvatarItem.vue'
 
 export default {

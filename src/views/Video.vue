@@ -29,9 +29,9 @@ import player from '@/components/playerItems/player.vue'
 import videoScrollList from '@/components/templates/videoScrollList.vue'
 import empty from '@/components/items/empty.vue'
 
-import { apiRequest, getVideoFullData } from '@/apiWorkers/apiRequest.js'
-import { dbRequestCaller, addDataToDb, removeDataFromDb, getFilteredDataFromDb} from '@/dbWorker/dbWorkers.js'
-import { videoToUnifiedView } from '@/helpers/myHelpers.js'
+import { apiRequest, getVideoFullData } from '@/serviсes/apiWorkers/apiRequest.js'
+import { dbRequestCaller, addDataToDb, removeDataFromDb, getFilteredDataFromDb} from '@/serviсes/dbWorker/'
+
 
 export default {
     components: { 
@@ -52,13 +52,13 @@ export default {
 
     watch: {
         '$route.path'(){
+            //// Обращение к api ////////////////////////
             if(this.$route.params.id){
                 this.$q.loading.show()
                 this.getRoutedVideo()
                     .then(()=>{
                         if(this.allRequestsDone){
                             this.isInWatchLaterPlaylist()
-                            this.removeVideoIfItWasSavedBefore()
                             this.saveVideoToBrowseHistory()
                             .then(()=>{
                                 this.$q.loading.hide()
@@ -66,7 +66,26 @@ export default {
                         }
                     })
             }
-        },   
+        },
+        ////////////////////////////////////////////
+
+        //// Mock ////
+        // '$route.path'(){
+        //     if(this.$route.params.id) {
+        //         this.$q.loading.show()
+        //         this.allRequestsDone = false
+        //         this.currentVideo = {}
+        //         const similarVue = JSON.parse(localStorage.getItem('similarVue'))
+        //         this.currentVideo = videoToUnifiedView(similarVue)
+        //         this.saveVideoToBrowseHistory()
+        //             .then(()=>{
+        //                 this.isInWatchLaterPlaylist()
+        //                 this.allRequestsDone = true
+        //                 this.$q.loading.hide()
+        //             })
+        //     }
+        // }
+        ////////////////////////////////////////////    
     },
 
     methods: {
@@ -152,6 +171,19 @@ export default {
     },
 
     beforeMount(){
+        //// mock ////////////////////////
+        // this.videoId = this.$route.params.id;
+        // this.$q.loading.show()
+        // this.allRequestsDone = true
+        // const similarVue = JSON.parse(localStorage.getItem('similarVue'))
+        // this.currentVideo = videoToUnifiedView(similarVue)
+        // this.isInWatchLaterPlaylist()
+        // this.saveVideoToBrowseHistory()
+        //     .then(()=>{
+        //         this.$q.loading.hide()
+        //     })
+
+        //// Обращение к api ////////////////////////
         this.$q.loading.show()
         this.getRoutedVideo()
             .then(()=>{
@@ -164,6 +196,7 @@ export default {
                     })
                 }
             })
+        //////////////////////////////////////////////////
     },
 }
 </script>

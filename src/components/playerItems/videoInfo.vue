@@ -13,7 +13,7 @@
 
 <script>
 
-import {definePublishedDay, formatNumber} from '@/helpers/myHelpers.js'
+import {definePublishedDay, formatNumber} from '@/serviсes/helpers/'
 
 export default {
     data(){

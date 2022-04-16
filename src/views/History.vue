@@ -89,9 +89,9 @@
 
 <script>
 
-import { isArrayEmpty, videoListToUnifiedView } from '@/helpers/myHelpers.js'
+import { isArrayEmpty} from '@/serviсes/helpers/'
 import { dbRequestCaller, getDataFromDbWithLimit, 
-getDataFromDb, addDataToDb, removeDataFromDb, getDbTotalCount } from '@/dbWorker/dbWorkers.js'
+getDataFromDb, addDataToDb, removeDataFromDb, getDbTotalCount } from '@/serviсes/dbWorker/'
 
 import messageMixin from '@/mixins/messageMixin.js'
 import intersection from '@/directives/intersection.js'
@@ -234,7 +234,6 @@ export default {
     },
 
     beforeMount(){
-        const mock = videoListToUnifiedView(JSON.parse(localStorage.getItem('mockData')))
         this.$q.loading.show()
         this.getBrowseHistoryList()
             .then(()=> {
