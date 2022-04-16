@@ -12,12 +12,13 @@
         @blur="changeVisibility"
         label="Поиск"
         outlined
+        autocomplete="off"
+        clearable
       >
         <template v-slot:append>
           <q-icon name="search" />
         </template>
-      </q-input>
-      <div
+        <div
         class="search-bar-promptly promptly" 
         :class="{show: focused}"
       >
@@ -42,6 +43,32 @@
           />
         </div> 
       </div>
+      </q-input>
+      <!-- <div
+        class="search-bar-promptly promptly" 
+        :class="{show: focused}"
+      >
+        <div 
+          class="promptly-item"
+          v-for="item in searchHistory"
+          :key="item.id"
+          @click="searchPromptlyItem(item.request)"
+          @mouseover="chosing = true"
+          @mouseout="chosing = false"
+        >
+          <q-icon class="promptly-item-icon" name="history"/>
+          <span class="promptly-item-title">{{item.request}}</span>
+          <q-btn
+            @click.stop="emitRemove(item.id)" 
+            class="promptly-item-remove-btn" 
+            color="negative" 
+            size="sm" 
+            padding="xs"
+            icon="close"
+            flat
+          />
+        </div> 
+      </div> -->
   </form>
 </template>
 
@@ -95,6 +122,7 @@ export default {
     },
 
     emitRemove(id){
+      this.focused = false
       this.$emit('removeRequest', id)
     }
   },
@@ -111,12 +139,15 @@ export default {
         position: relative;
       }
       .search-bar-promptly {
-        width: 100%;
+        width: calc(100% + 56px);
         height: auto;
         max-height: 350px;
         overflow-y: auto;
         position: absolute;
         background-color: #fff;
+        color: #000;
+        top: 56px;
+        left: -10px;
         z-index: 999;
         opacity: 0;
         visibility: hidden;
